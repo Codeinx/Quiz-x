@@ -1,6 +1,7 @@
 const startBtn = document.querySelector(".startBtn button");
 const infoBox = document.querySelector(".infoBox");
 const exit = infoBox.querySelector(".buttons .quit");
+const exitx = document.querySelector(".fbuttons .fquit");
 const continueBtn = infoBox.querySelector(".buttons .restart");
 const quizBox = document.querySelector(".quizBox");
 const result = document.querySelector(".result");
@@ -71,6 +72,8 @@ next.onclick = ()=>{
         startTimerLine(widthValue); 
         timeText.textContent = "Time Left"; 
         next.classList.remove("show"); 
+        exitx.classList.remove("show"); 
+        exit.classList.remove("show"); 
     }else{
         clearInterval(counter); 
         clearInterval(counterLine); 
@@ -78,10 +81,20 @@ next.onclick = ()=>{
     }
 }
 
+
 exit.onclick = ()=>{
+    console.log('Exit button clicked');
     infoBox.classList.remove("activeInfo"); 
     quizBox.classList.remove("activeQuiz"); 
 }
+
+exitx.onclick = ()=>{
+    console.log('Exit button clicked');
+    infoBox.classList.remove("activeInfo"); 
+    quizBox.classList.remove("activeQuiz"); 
+    window.location.reload(); 
+}
+
 
 function showQuestions(index){
     const questions = document.querySelector(".questions");
@@ -132,7 +145,7 @@ function optionSelected(answer){
     for(i=0; i < allOptions; i++){
         options.children[i].classList.add("disabled"); 
     }
-    exit.classList.add("show");
+    exitx.classList.add("show");
     next.classList.add("show");
 }
 function showResult(){
@@ -178,7 +191,7 @@ function startTimer(time){
             for(i=0; i < allOptions; i++){
                 options.children[i].classList.add("disabled");
             }
-            exit.classList.add("show");
+            exitx.classList.add("show");
             next.classList.add("show"); 
         }
     }

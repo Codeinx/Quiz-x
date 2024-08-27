@@ -285,7 +285,7 @@ footer {
     padding-left: 0px;
 }
 
-.next {
+.next, .fquit {
     height: 40px;
     padding: 0 13px;
     font-size: 18px;
@@ -309,6 +309,12 @@ footer {
 }
 
 .next.show {
+    opacity: 1;
+    pointer-events: auto;
+    transform: scale(1);
+}
+
+.fquit.show {
     opacity: 1;
     pointer-events: auto;
     transform: scale(1);
