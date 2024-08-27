@@ -95,22 +95,66 @@ exitx.onclick = ()=>{
     window.location.reload(); 
 }
 
+function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
 
-function showQuestions(index){
-    const questions = document.querySelector(".questions");
-    let que_tag = '<span>'+ quest[index].numb + ". " + quest[index].question +'</span>';
-    let option_tag = '<div class="option"><span>'+ quest[index].options[0] +'</span></div>'
-    + '<div class="option"><span>'+ quest[index].options[1] +'</span></div>'
-    + '<div class="option"><span>'+ quest[index].options[2] +'</span></div>'
-    + '<div class="option"><span>'+ quest[index].options[3] +'</span></div>';
-    questions.innerHTML = que_tag; 
-    options.innerHTML = option_tag; 
+function showQuestions(index) {
+    // Shuffle the questions array to pick a random question
+    shuffleArray(quest);
     
+    // Pick the first question after shuffling
+    const question = quest[index];
+    
+    // Store the correct answer before shuffling
+    const correctAnswer = question.answer;
+    
+    // Shuffle the options array for the selected question
+    shuffleArray(question.options);
+
+    // Create the question tag
+    let que_tag = '<span>' + question.question + '</span>';
+    
+    // Create the option tags
+    let option_tag = '';
+    for (let i = 0; i < question.options.length; i++) {
+        option_tag += '<div class="option"><span>' + question.options[i] + '</span></div>';
+    }
+
+    // Insert the question and options into the HTML
+    const questions = document.querySelector(".questions");
+    questions.innerHTML = que_tag;
+    
+    const options = document.querySelector(".options");
+    options.innerHTML = option_tag;
+
+
+    // Add click event listeners to the options
     const option = options.querySelectorAll(".option");
-    for(i=0; i < option.length; i++){
+    for (let i = 0; i < option.length; i++) {
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
 }
+
+// function showQuestions(index){
+//     const questions = document.querySelector(".questions");
+//     let que_tag = '<span>'+ quest[index].numb + ". " + quest[index].question +'</span>';
+//     let option_tag = '<div class="option"><span>'+ quest[index].options[0] +'</span></div>'
+//     + '<div class="option"><span>'+ quest[index].options[1] +'</span></div>'
+//     + '<div class="option"><span>'+ quest[index].options[2] +'</span></div>'
+//     + '<div class="option"><span>'+ quest[index].options[3] +'</span></div>';
+//     questions.innerHTML = que_tag; 
+//     options.innerHTML = option_tag; 
+    
+//     const option = options.querySelectorAll(".option");
+//     for(i=0; i < option.length; i++){
+//         option[i].setAttribute("onclick", "optionSelected(this)");
+//     }
+// }
 
 let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
@@ -120,10 +164,10 @@ function optionSelected(answer){
     clearInterval(counter); 
     clearInterval(counterLine); 
     let userAns = answer.textContent; 
-    let correcAns = quest[questionCount].answer; 
+    let correctAnswer = quest[questionCount].answer; 
     const allOptions = options.children.length; 
 
-    if(userAns == correcAns){ 
+    if(userAns === correctAnswer){ 
         userScore += 1; 
         answer.classList.add("correct"); 
         answer.insertAdjacentHTML("beforeend", tickIconTag); 
@@ -135,7 +179,7 @@ function optionSelected(answer){
         console.log("Wrong Answer");
 
         for(i=0; i < allOptions; i++){
-            if(options.children[i].textContent == correcAns){ 
+            if(options.children[i].textContent === correctAnswer){ 
                 options.children[i].setAttribute("class", "option correct"); 
                 options.children[i].insertAdjacentHTML("beforeend", tickIconTag);
                 console.log("Auto selected correct answer.");

@@ -23,7 +23,7 @@ let quest = [
     },
     {
         numb: 3,
-        question: "Which of the following is a JavaScript framework?",
+        question: "Which of the following is a JavaScript library?",
         answer: "React",
         options: [
             "Django",
@@ -156,12 +156,12 @@ let quest = [
     {
         numb: 15,
         question: "Which HTML tag is used to create a hyperlink?",
-        answer: "<a>",
+        answer: "/<a>",
         options: [
-            "<link>",
-            "<a>",
-            "<href>",
-            "<url>"
+            "/<link>",
+            "/<a>",
+            "/<href>",
+            "/<url>"
         ]
     },
     {
@@ -398,12 +398,12 @@ let quest = [
     {
         numb: 37,
         question: "Which HTML tag is used to define an unordered list?",
-        answer: "<ul>",
+        answer: "/<ul>",
         options: [
-            "<ol>",
-            "<ul>",
-            "<li>",
-            "<list>"
+            "/<ol>",
+            "/<ul>",
+            "/<li>",
+            "/<list>"
         ]
     },
     {
@@ -519,12 +519,12 @@ let quest = [
     {
         numb: 48,
         question: "What is the correct HTML tag for inserting a line break?",
-        answer: "<br>",
+        answer: "/<br>",
         options: [
-            "<break>",
-            "<br>",
-            "<lb>",
-            "<newline>"
+            "/<break>",
+            "/<br>",
+            "/<lb>",
+            "/<newline>"
         ]
     },
     {
