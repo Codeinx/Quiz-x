@@ -52,13 +52,13 @@ restart_quiz.onclick = ()=>{
 }
 
 quit_quiz.onclick = ()=>{
-    window.location.reload(); //reload the current window
+    window.location.reload(); 
 }
 
 const next = document.querySelector("footer .next");
 const bottom_ques_counter = document.querySelector("footer .totalQuestions");
 
-// if  the "Next Que" button is clicked
+
 next.onclick = ()=>{
     if(questionCount < quest.length - 1){ 
         questionCount++; 
@@ -78,11 +78,13 @@ next.onclick = ()=>{
     }
 }
 
+exit.onclick = ()=>{
+    infoBox.classList.remove("activeInfo"); 
+    quizBox.classList.remove("activeQuiz"); 
+}
 
 function showQuestions(index){
     const questions = document.querySelector(".questions");
-
-    
     let que_tag = '<span>'+ quest[index].numb + ". " + quest[index].question +'</span>';
     let option_tag = '<div class="option"><span>'+ quest[index].options[0] +'</span></div>'
     + '<div class="option"><span>'+ quest[index].options[1] +'</span></div>'
@@ -92,8 +94,6 @@ function showQuestions(index){
     options.innerHTML = option_tag; 
     
     const option = options.querySelectorAll(".option");
-
-   
     for(i=0; i < option.length; i++){
         option[i].setAttribute("onclick", "optionSelected(this)");
     }
@@ -102,7 +102,7 @@ function showQuestions(index){
 let tickIconTag = '<div class="icon tick"><i class="fas fa-check"></i></div>';
 let crossIconTag = '<div class="icon cross"><i class="fas fa-times"></i></div>';
 
-//if the user clicks on the option
+
 function optionSelected(answer){
     clearInterval(counter); 
     clearInterval(counterLine); 
@@ -132,7 +132,8 @@ function optionSelected(answer){
     for(i=0; i < allOptions; i++){
         options.children[i].classList.add("disabled"); 
     }
-    next.classList.add("show"); 
+    exit.classList.add("show");
+    next.classList.add("show");
 }
 function showResult(){
     infoBox.classList.remove("activeInfo"); 
@@ -166,7 +167,7 @@ function startTimer(time){
             clearInterval(counter); 
             timeText.textContent = "Time Off"; 
             const allOptions = options.children.length; 
-            let correcAns = questions[questionCount].answer; 
+            let correcAns = quest[questionCount].answer; 
             for(i=0; i < allOptions; i++){
                 if(options.children[i].textContent == correcAns){ 
                     options.children[i].setAttribute("class", "option correct"); 
@@ -177,6 +178,7 @@ function startTimer(time){
             for(i=0; i < allOptions; i++){
                 options.children[i].classList.add("disabled");
             }
+            exit.classList.add("show");
             next.classList.add("show"); 
         }
     }
@@ -186,7 +188,7 @@ function startTimerLine(time){
     counterLine = setInterval(timer, 29);
     function timer(){
         time += 1; 
-        timeline.style.width = time + "px"; 
+        // timeline.style.width = time + "px"; 
         if(time > 549){ 
             clearInterval(counterLine); 
         }

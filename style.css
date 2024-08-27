@@ -160,6 +160,7 @@ body {
     border: 1px solid #b8daff;
     border-radius: 5px;
     padding: 0 8px;
+    margin-left: 200px;
 }
 
 .timeText {
@@ -284,7 +285,7 @@ footer {
     padding-left: 0px;
 }
 
-footer button {
+.next {
     height: 40px;
     padding: 0 13px;
     font-size: 18px;
@@ -294,8 +295,8 @@ footer button {
     outline: none;
     color: #fff;
     border-radius: 5px;
-    background: #007bff;
-    border: 1px solid #007bff;
+    background: #e6a3af;
+    border: 1px solid #e6a3af;
     line-height: 10px;
     opacity: 0;
     pointer-events: none;
@@ -303,11 +304,11 @@ footer button {
     transition: all 0.3s ease;
 }
 
-footer button:hover {
+.next:hover {
     background: #0263ca;
 }
 
-footer button.show {
+.next.show {
     opacity: 1;
     pointer-events: auto;
     transform: scale(1);
