@@ -308,6 +308,10 @@ footer {
     background: #0263ca;
 }
 
+.fquit:hover:hover {
+    background: #f20c36;
+}
+
 .next.show {
     opacity: 1;
     pointer-events: auto;
@@ -401,6 +405,10 @@ footer {
         width: 90%;
         max-width: none;
         padding: 10px;
+    }
+
+    .infoBox ,.buttons {
+        justify-content: center;
     }
 
     .quizBox header {
